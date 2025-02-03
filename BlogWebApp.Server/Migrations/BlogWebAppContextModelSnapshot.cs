@@ -47,6 +47,32 @@ namespace BlogWebApp.Server.Migrations
                     b.HasKey("BusinessContactId");
 
                     b.ToTable("BusinessContactDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            BusinessContactId = 1,
+                            BusinessAddress = "1600 Pennsylvania Avenue NW, Washington, DC 20500",
+                            BusinessEmail = "I Aint Giving you that (;",
+                            BusinessName = "On A Whim Studios",
+                            BusinessPhone = "(360) 360-3600"
+                        },
+                        new
+                        {
+                            BusinessContactId = 2,
+                            BusinessAddress = "1600 Pennsylvania Avenue NW, Washington, DC 20500",
+                            BusinessEmail = "jesse@toast.llc",
+                            BusinessName = "Toast LLC.",
+                            BusinessPhone = "(360) 555-5555"
+                        },
+                        new
+                        {
+                            BusinessContactId = 3,
+                            BusinessAddress = "1600 Pennsylvania Avenue NW, Washington, DC 20500",
+                            BusinessEmail = "Bogus@whatevenisthelimitforthelengthoftheemaildomainidontreallyknow.idk",
+                            BusinessName = "Bogus Industries",
+                            BusinessPhone = "(360) 555-5555"
+                        });
                 });
 
             modelBuilder.Entity("BlogWebApp.Server.Models.DynamicContent", b =>
@@ -75,10 +101,6 @@ namespace BlogWebApp.Server.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -86,6 +108,28 @@ namespace BlogWebApp.Server.Migrations
                     b.HasKey("DynamicContentID");
 
                     b.ToTable("DynamicContent");
+
+                    b.HasData(
+                        new
+                        {
+                            DynamicContentID = 1,
+                            Author = "Dr. Meowdy",
+                            Body = "This is a test of the first post made from the seeded data (:",
+                            CreatedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9069),
+                            Description = "Juan Post",
+                            ModifiedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9123),
+                            Title = "Big First Post"
+                        },
+                        new
+                        {
+                            DynamicContentID = 2,
+                            Author = "Not You",
+                            Body = "This is another sample post of stuff. Idk, I making a post while I be snacking.",
+                            CreatedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9125),
+                            Description = "I dont really know what the post is or whatever.",
+                            ModifiedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9126),
+                            Title = "What kind of Post is this?"
+                        });
                 });
 
             modelBuilder.Entity("BlogWebApp.Server.Models.FeedbackData", b =>
@@ -111,6 +155,22 @@ namespace BlogWebApp.Server.Migrations
                     b.HasKey("FeedbackID");
 
                     b.ToTable("FeedbackData");
+
+                    b.HasData(
+                        new
+                        {
+                            FeedbackID = 1,
+                            FeedbackDescription = "This design sucks. It doesnt exist!",
+                            FeedbackEmail = "stuff@fauxemail.com",
+                            FeedbackName = "Design"
+                        },
+                        new
+                        {
+                            FeedbackID = 2,
+                            FeedbackDescription = "Why Am I getting an error 418?",
+                            FeedbackEmail = "coffee@teapot.com",
+                            FeedbackName = "Server"
+                        });
                 });
 
             modelBuilder.Entity("BlogWebApp.Server.Models.StaticContent", b =>
@@ -138,6 +198,24 @@ namespace BlogWebApp.Server.Migrations
                     b.HasKey("StaticContentID");
 
                     b.ToTable("StaticContent");
+
+                    b.HasData(
+                        new
+                        {
+                            StaticContentID = 1,
+                            Content = "Awesome Layout Content!",
+                            CreatedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9171),
+                            ModifiedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9172),
+                            Name = "Wireframe"
+                        },
+                        new
+                        {
+                            StaticContentID = 2,
+                            Content = "Have you read the Scrum Manifesto?",
+                            CreatedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9174),
+                            ModifiedDate = new DateTime(2025, 2, 2, 17, 54, 15, 304, DateTimeKind.Local).AddTicks(9175),
+                            Name = "Scrum Bible"
+                        });
                 });
 #pragma warning restore 612, 618
         }
