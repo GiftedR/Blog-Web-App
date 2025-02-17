@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BlogWebApp.Server.Models;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
+using BlogWebApp.Server.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BlogWebApp.Server.Data
 {
-    public class BlogWebAppContext : DbContext
+    public class BlogWebAppContext : IdentityDbContext<BlogUser>
     {
         public BlogWebAppContext (DbContextOptions<BlogWebAppContext> options)
             : base(options)
@@ -45,28 +48,29 @@ namespace BlogWebApp.Server.Data
                 }
             );
 
-            modelBuilder.Entity<DynamicContent>().HasData(
-                new DynamicContent
-                {
-                    DynamicContentID = 1,
-                    Title = "Big First Post",
-                    Description = "Juan Post",
-                    Author = "Dr. Meowdy",
-                    Body = "This is a test of the first post made from the seeded data (:",
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now
-                },
-                new DynamicContent
-                {
-                    DynamicContentID = 2,
-                    Title = "What kind of Post is this?",
-                    Description = "I dont really know what the post is or whatever.",
-                    Author = "Not You",
-                    Body = "This is another sample post of stuff. Idk, I making a post while I be snacking.",
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now
-                }
-            );
+            // Had to be Commented Out due to Author Field
+            //modelBuilder.Entity<DynamicContent>().HasData(
+            //    new DynamicContent
+            //    {
+            //        DynamicContentID = 1,
+            //        Title = "Big First Post",
+            //        Description = "Juan Post",
+            //        AuthorId = null,
+            //        Body = "This is a test of the first post made from the seeded data (:",
+            //        CreatedDate = DateTime.Now,
+            //        ModifiedDate = DateTime.Now
+            //    },
+            //    new DynamicContent
+            //    {
+            //        DynamicContentID = 2,
+            //        Title = "What kind of Post is this?",
+            //        Description = "I dont really know what the post is or whatever.",
+            //        AuthorId = null,
+            //        Body = "This is another sample post of stuff. Idk, I making a post while I be snacking.",
+            //        CreatedDate = DateTime.Now,
+            //        ModifiedDate = DateTime.Now
+            //    }
+            //);
 
             modelBuilder.Entity<FeedbackData>().HasData(
                 new FeedbackData

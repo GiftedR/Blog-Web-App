@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlogWebApp.Server.Data;
 using BlogWebApp.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogWebApp.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DynamicContentsController : ControllerBase
@@ -22,6 +24,7 @@ namespace BlogWebApp.Server.Controllers
         }
 
         // GET: api/DynamicContents
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DynamicContent>>> GetDynamicContent()
         {
@@ -29,6 +32,7 @@ namespace BlogWebApp.Server.Controllers
         }
 
         // GET: api/DynamicContents/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<DynamicContent>> GetDynamicContent(int id)
         {

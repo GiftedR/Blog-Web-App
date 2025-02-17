@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlogWebApp.Server.Data;
 using BlogWebApp.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogWebApp.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FeedbackDatasController : ControllerBase
@@ -22,6 +24,7 @@ namespace BlogWebApp.Server.Controllers
         }
 
         // GET: api/FeedbackDatas
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FeedbackData>>> GetFeedbackData()
         {
@@ -29,6 +32,7 @@ namespace BlogWebApp.Server.Controllers
         }
 
         // GET: api/FeedbackDatas/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<FeedbackData>> GetFeedbackData(int id)
         {

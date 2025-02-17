@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BlogWebApp.Server.Data;
+using Microsoft.AspNetCore.Identity;
+using BlogWebApp.Server.Areas.Identity.Data;
 
 namespace BlogWebApp.Server
 {
@@ -11,6 +13,8 @@ namespace BlogWebApp.Server
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<BlogWebAppContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogWebAppContext") ?? throw new InvalidOperationException("Connection string 'BlogWebAppContext' not found.")));
+
+            builder.Services.AddDefaultIdentity<BlogUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<BlogWebAppContext>();
 
             // Add services to the container.
 
